@@ -2,12 +2,14 @@ services:
   react-app:
     build:
       context: .
-      # Chế độ này dùng để lập trình (Development)
+      target: dev # Sử dụng giai đoạn dev cho development với hot-reloading
     ports:
-      - "5173:5173"
+      - "3000:3000"
     volumes:
       - .:/app
       - /app/node_modules
     environment:
-      - CHOKIDAR_USEPOLLING=true # Giúp nhận diện thay đổi file trên Windows tốt hơn
-    command: npm run dev -- --host
+      - CHOKIDAR_USEPOLLING=true
+      - HOST=0.0.0.0
+      - WATCHPACK_POLLING=true
+    command: npm start
